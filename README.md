@@ -1,19 +1,126 @@
-# CureNet-Mental-Health-Prediction
-CureNet is a machine learning-powered solution designed to predict mental health conditions based on user-provided data. By analyzing key health indicators, CureNet aims to assist healthcare professionals and individuals in identifying early signs of mental health issues, providing personalized insights and recommendations for further actions.
+# CureNet Mental Health Chatbot
 
-## About
-CureNet - Mental Health Prediction is an innovative AI-driven platform aimed at supporting early detection of mental health disorders. Mental health challenges often go unnoticed until they severely impact individuals' lives. CureNet seeks to bridge this gap by offering an accessible and data-driven solution.
+CureNet is a full-stack educational mental-wellness chatbot based on the original repository concept. The original project had a Flask endpoint with placeholder OpenVINO paths and a frontend that called `localhost:5000`; this version replaces those placeholders with a working Flask backend and a responsive frontend.
 
-Leveraging machine learning algorithms, CureNet predicts mental health conditions based on a combination of user inputs, such as lifestyle choices, emotional states, and historical patterns. The platform can identify potential risks of conditions like anxiety, depression, and stress, providing early warnings and actionable insights for users and healthcare professionals.
+## What works
 
-Key features of the project include:
+- Responsive mental-wellness chat UI
+- Flask REST API
+- Same-origin frontend/backend integration
+- Session-based conversation history
+- SQLite storage for conversations
+- Topic-aware responses for anxiety, stress, depression, sleep, panic, loneliness and sadness
+- Crisis-language detection and safety escalation
+- Simple non-diagnostic wellness screener API
+- Health-check endpoint
+- No external AI API key required
 
-- Data Analysis & Prediction: Uses advanced machine learning models to evaluate data and predict mental health conditions.
+## Important
 
-- Personalized Recommendations: Provides suggestions for self-care and professional intervention based on individual risk factors.
+This is an educational support chatbot. It does **not** diagnose mental-health conditions, prescribe treatment, or replace a qualified clinician.
 
-- Scalable API Integration: Can be integrated into healthcare platforms to assist professionals with patient evaluations.
+If someone may be in immediate danger or may act on thoughts of suicide/self-harm, use local emergency services or go to the nearest emergency department. In India, the Government of India's Tele-MANAS service can be reached 24x7 at **14416** or **1800-89-14416**.
 
-- Privacy-Centric Approach: Ensures all user data is secure and processed confidentially.
+## Run locally
 
-CureNet's goal is to contribute to proactive mental health management, enabling users to take control of their mental well-being and seek help when needed.
+### 1. Create a virtual environment
+
+Windows:
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+```
+
+macOS/Linux:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+### 2. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Start the backend
+
+```bash
+python app.py
+```
+
+### 4. Open the frontend
+
+Visit:
+
+```text
+http://127.0.0.1:5000
+```
+
+The Flask server serves both the frontend and API, so there is no CORS setup or separate frontend server required.
+
+## API
+
+### Health
+
+```http
+GET /api/health
+```
+
+### Chat
+
+```http
+POST /api/chat
+Content-Type: application/json
+
+{
+  "message": "I feel very stressed",
+  "session_id": "demo-session"
+}
+```
+
+### Wellness screener
+
+```http
+POST /api/screen
+Content-Type: application/json
+
+{
+  "answers": {
+    "mood": 2,
+    "sleep": 3,
+    "energy": 2,
+    "worry": 2
+  }
+}
+```
+
+The screener is intentionally labelled non-diagnostic and should not be presented as a clinical diagnosis.
+
+### History
+
+```http
+GET /api/history/<session_id>
+```
+
+## Project structure
+
+```text
+CureNet-Mental-Health-Chatbot/
+├── app.py
+├── requirements.txt
+├── README.md
+├── .gitignore
+├── data/
+│   └── .gitkeep
+└── static/
+    ├── index.html
+    ├── style.css
+    └── script.js
+```
+
+## Deployment
+
+For production, run Flask behind a production WSGI server such as Gunicorn or Waitress and add authentication, HTTPS, rate limiting, secure database controls, privacy/retention policies, structured clinical governance, and professional review before handling real patient information.

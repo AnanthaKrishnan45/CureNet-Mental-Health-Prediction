@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CureNet mental wellness support chatbot">
+  <title>CureNet | Mental Wellness Assistant</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">C</div>
+      <div>
+        <h1>CureNet</h1>
+        <span>Mental Wellness Assistant</span>
+      </div>
+    </div>
+    <div class="status"><span></span> Backend online</div>
+  </header>
+
+  <main class="layout">
+    <section class="hero">
+      <p class="eyebrow">PRIVATE • SUPPORTIVE • NON-DIAGNOSTIC</p>
+      <h2>A calmer place to talk about how you're feeling.</h2>
+      <p class="hero-text">
+        Share what's on your mind and get general mental-wellness information and practical coping ideas.
+        CureNet is not a replacement for a doctor, psychologist, counsellor, or emergency service.
+      </p>
+      <div class="quick-actions">
+        <button data-message="I'm feeling anxious">I'm feeling anxious</button>
+        <button data-message="I'm feeling stressed">I'm stressed</button>
+        <button data-message="I can't sleep">Sleep problems</button>
+        <button data-message="I feel lonely">I feel lonely</button>
+      </div>
+      <div class="notice">
+        <strong>Need urgent help?</strong>
+        If you may hurt yourself or someone else, contact emergency services or go to the nearest emergency department.
+        In India, Tele-MANAS is available 24x7 at <strong>14416</strong>.
+      </div>
+    </section>
+
+    <section class="chat-card" aria-label="CureNet chatbot">
+      <div class="chat-head">
+        <div>
+          <strong>Health Assistant</strong>
+          <small>General mental-wellness support</small>
+        </div>
+        <button id="clearBtn" class="ghost">Clear</button>
+      </div>
+
+      <div id="chatLog" class="chat-log" aria-live="polite"></div>
+
+      <div class="typing" id="typing">CureNet is thinking…</div>
+
+      <form id="chatForm" class="composer">
+        <textarea id="userMessage" rows="1" maxlength="2000"
+          placeholder="Tell me how you're feeling..." aria-label="Your message"></textarea>
+        <button id="sendBtn" type="submit">Send</button>
+      </form>
+      <div class="disclaimer">For educational and wellness support only. Not a medical diagnosis.</div>
+    </section>
+  </main>
+
+  <footer>
+    CureNet Mental Health Prediction • Built as an educational project
+  </footer>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
